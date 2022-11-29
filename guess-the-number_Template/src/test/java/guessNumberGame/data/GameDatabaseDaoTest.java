@@ -54,11 +54,10 @@ public class GameDatabaseDaoTest extends TestCase {
     @Test
     public void testGetAll() {
         //implement
-        assertEquals(0, gameDao.getAll().size());
         GameService gameService = new GameService();
         Game game = gameService.newGame();
         gameDao.add(game);
-
+        assertEquals(0, gameDao.getAll().size());
         assertEquals(1, gameDao.getAll().size());
     }
 
@@ -80,9 +79,10 @@ public class GameDatabaseDaoTest extends TestCase {
         GameService gameService = new GameService();
         Game game = gameService.newGame();
         gameDao.add(game);
+        gameDao.deleteById(game.getGameId());
+
         List<Game> games = gameDao.getAll();
         assertTrue(games.contains(game));
-        gameDao.deleteById(game.getGameId());
         Game fromDao = gameDao.findById(game.getGameId());
         assertNull(fromDao);
     }

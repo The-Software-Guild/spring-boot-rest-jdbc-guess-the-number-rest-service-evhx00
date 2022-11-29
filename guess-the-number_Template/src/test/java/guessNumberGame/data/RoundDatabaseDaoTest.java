@@ -47,16 +47,15 @@ public class RoundDatabaseDaoTest extends TestCase {
     public void testAdd() {
         GameService gameService = new GameService();
         Game game = gameService.newGame();
-        gameDao.add(game);
-
         Round round = new Round();
+        gameDao.add(game);
         round.setGameId(game.getGameId());
         gameService.setTimeStamp(round);
         round.setGuess("1234");
         round.setGuessResult("e:2:p:1");
         roundDao.add(round);
-        Round fromDao = roundDao.findById(round.getId());
 
+        Round fromDao = roundDao.findById(round.getId());
         assertEquals(round.getId(), fromDao.getId());
     }
 
@@ -64,19 +63,16 @@ public class RoundDatabaseDaoTest extends TestCase {
     public void testGetAll() {
         GameService gameService = new GameService();
         Game game = gameService.newGame();
-        gameDao.add(game);
-
         Game game2 = gameService.newGame();
-        gameDao.add(game2);
-
         Round round = new Round();
-        round.setGuess("1111");
-        round.setGameId(game.getGameId());
-
         Round round2 = new Round();
-        round2.setGuess("2222");
-        round2.setGameId(game2.getGameId());
 
+        gameDao.add(game);
+        gameDao.add(game2);
+        round.setGuess("1233");
+        round.setGameId(game.getGameId());
+        round2.setGuess("1234");
+        round2.setGameId(game2.getGameId());
         roundDao.add(round);
         roundDao.add(round2);
 
@@ -88,20 +84,17 @@ public class RoundDatabaseDaoTest extends TestCase {
     public void testGetAllOfGame() {
          //implement
         GameService gameService = new GameService();
-        Game game = gameService.newGame();
-        gameDao.add(game);
-
+        Game game1 = gameService.newGame();
         Game game2 = gameService.newGame();
+
+        gameDao.add(game1);
         gameDao.add(game2);
-
         Round round = new Round();
-        round.setGuess("1111");
-        round.setGameId(game.getGameId());
-
         Round round2 = new Round();
-        round2.setGuess("2222");
+        round.setGuess("1233");
+        round2.setGuess("1234");
+        round.setGameId(game1.getGameId());
         round2.setGameId(game2.getGameId());
-
         roundDao.add(round);
         roundDao.add(round2);
 
