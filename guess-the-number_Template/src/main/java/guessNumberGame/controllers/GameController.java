@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping(value="/api", method=RequestMethod.GET)
+@RequestMapping("/api")
 public class GameController {
 
 
