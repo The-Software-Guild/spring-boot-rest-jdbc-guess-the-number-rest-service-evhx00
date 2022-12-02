@@ -23,8 +23,7 @@ public class GameDatabaseDaoTest extends TestCase {
 
    @Autowired
    RoundDao roundDao;
-   public GameDatabaseDaoTest()
- {}
+   public GameDatabaseDaoTest() {}
  
     @Before
     public void setUp() {
@@ -42,7 +41,6 @@ public class GameDatabaseDaoTest extends TestCase {
 
     @Test
     public void testAddGetGames() {
-        // adds new game using dao
         GameService gameService = new GameService();
         Game game = gameService.newGame();
         gameDao.add(game);

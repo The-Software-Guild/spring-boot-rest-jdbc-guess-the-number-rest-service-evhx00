@@ -52,6 +52,10 @@ public class GameController {
     }
 
     @GetMapping("/game")
+
+
+
+
     public List<Game> all() {
       //implement
         List<Game> games = gameDao.getAll();

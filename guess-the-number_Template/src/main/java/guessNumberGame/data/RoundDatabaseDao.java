@@ -26,7 +26,7 @@ public class RoundDatabaseDao implements  RoundDao{
     @Override
     public Round add(Round round) {
 
-        final String sql = "INSERT INTO Round(game_id, guess_time, guess, result)" +
+        final String sql = "INSERT INTO round(game_id, guess_time, guess, result)" +
                 " VALUES(?,?,?,?);";
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 
@@ -78,7 +78,7 @@ public class RoundDatabaseDao implements  RoundDao{
     @Override
     public boolean deleteById(int round_id) {
       //implement
-        final String sql = "DELETE FROM Rounds WHERE id = ?;";
+        final String sql = "DELETE FROM rounds WHERE id = ?;";
         return jdbcTemplate.update(sql, round_id) > 0;
     }
 

@@ -27,7 +27,7 @@ public class GameDatabaseDao implements GameDao {
     @Override
     public Game add(Game game) {
 
-        final String sql = "INSERT INTO Game(answer, isFinished) VALUES(?,?);";
+        final String sql = "INSERT INTO game(answer, isFinished) VALUES(?,?);";
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 
         jdbcTemplate.update((Connection conn) -> {
@@ -50,7 +50,7 @@ public class GameDatabaseDao implements GameDao {
     @Override
     public List<Game> getAll() {
        //implement
-        final String sql = "SELECT* FROM games; ";
+        final String sql = "SELECT* FROM game; ";
         return jdbcTemplate.query(sql,new GameMapper());
     }
 
@@ -58,20 +58,20 @@ public class GameDatabaseDao implements GameDao {
     @Override
     public Game findById(int game_id) {
        //implement
-        final String sql = "SELECT * FROM games WHERE id=?; ";
+        final String sql = "SELECT * FROM game WHERE id=?; ";
         return jdbcTemplate.queryForObject(sql, new GameMapper(), game_id);
     }
 
     @Override
     public boolean update(Game game) {
          //implement
-        final String sql = "UPDATE Games SET answer = ? , isFinished = ? WHERE id = ?;";
+        final String sql = "UPDATE game SET answer = ? , isFinished = ? WHERE id = ?;";
         return jdbcTemplate.update(sql, game.getAnswer(),game.getIsFinished(), game.getGameId())>0;
     }
 
     @Override
     public boolean deleteById(int game_id) {
-        final String sql = "DELETE FROM Games WHERE id = ?;";
+        final String sql = "DELETE FROM game WHERE id = ?;";
         return jdbcTemplate.update(sql, game_id) > 0;
     }
 
