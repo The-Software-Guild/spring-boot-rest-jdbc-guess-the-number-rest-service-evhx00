@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping(value="/api", method=RequestMethod.GET)
 public class GameController {
 
 
@@ -28,7 +28,7 @@ public class GameController {
         this.roundDao = roundDao;
     }
 
-    @PostMapping("/begin")
+    @PostMapping("/begin") // 127.0.0.1:8080/api/begin
     @ResponseStatus(HttpStatus.CREATED)
     public Game create() {
         //implement create gameService object and game object
@@ -41,7 +41,7 @@ public class GameController {
     }
 
 
-    @PostMapping("/guess")
+    @PostMapping("/guess") // 127.0.0.1:8080/api/guess
     @ResponseStatus(HttpStatus.CREATED)
     public Round guessNumber(@RequestBody Round body) {
        //implement
@@ -51,11 +51,7 @@ public class GameController {
         return roundDao.add(round);
     }
 
-    @GetMapping("/game")
-
-
-
-
+    @GetMapping("/game") // 127.0.0.1:8080/api/game
     public List<Game> all() {
       //implement
         List<Game> games = gameDao.getAll();
@@ -64,7 +60,7 @@ public class GameController {
         return games;
     }
 
-    @GetMapping("game/{id}")
+    @GetMapping("game/{id}") // 127.0.0.1:8080/api/game/{id}
     public Game getGameById(@PathVariable int id) {
         //implement
         Game game = gameDao.findById(id);
@@ -72,7 +68,7 @@ public class GameController {
         return gameService.getGames(game);
     }
 
-    @GetMapping("rounds/{gameId}")
+    @GetMapping("rounds/{gameId}") // 127.0.0.1:8080/api/rounds/{game_id}
     //implement
     public List<Round> getAllRoundsByID(@PathVariable int gameId) {
         return roundDao.getAllOfGame(gameId);

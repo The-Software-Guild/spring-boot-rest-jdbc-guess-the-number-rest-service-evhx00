@@ -51,14 +51,14 @@ public class GameDatabaseDao implements GameDao {
     public List<Game> getAll() {
        //implement
         final String sql = "SELECT* FROM game; ";
-        return jdbcTemplate.query(sql,new GameMapper());
+        return jdbcTemplate.query(sql, new GameMapper());
     }
 
 
     @Override
     public Game findById(int game_id) {
        //implement
-        final String sql = "SELECT * FROM game WHERE id=?; ";
+        final String sql = "SELECT * FROM game WHERE id = ?; ";
         return jdbcTemplate.queryForObject(sql, new GameMapper(), game_id);
     }
 
